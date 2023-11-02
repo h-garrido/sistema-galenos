@@ -129,7 +129,7 @@ export function MedicosFormPage() {
                 </label>
                
                 <button
-                className='bg-indigo-500 p-3 rounded-lg block w-full mt-9'>Guardar</button>
+                className='bg-indigo-500 p-3 rounded-lg block w-full mt-9 mb-6'>Guardar</button>
             </form>
             {params.id_medico && (
             <button className='bg-red-500 p-3 rounded-lg w-48 mt-3 mb-6'

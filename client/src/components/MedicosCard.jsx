@@ -23,7 +23,7 @@ export function MedicoCard({ medico }) {
             <p className='text-slate-400'>Email: {medico.email}</p>
             <p className='text-slate-400'>Matrícula: {medico.matricula}</p>
             <p className='text-slate-400'>Especialidad: {medico.especialidad}</p>
-            <p className='text-slate-400'>Médico: {paciente.medico}</p>
+            <p className='text-slate-400'>Paciente: {medico.pacientes}</p>
             <hr />
         </div>
     )
