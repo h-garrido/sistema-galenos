@@ -1,0 +1,23 @@
+# Python
+*.pyc
+__pycache__/
+
+# Django
+*.log
+*.pot
+*.sqlite3
+db.sqlite3
+media/
+
+# Entorno virtual
+venv/
+.env
+
+# Sistema/IDEs
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Node.js (si se utiliza)
+node_modules/
