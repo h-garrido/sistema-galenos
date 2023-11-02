@@ -17,7 +17,7 @@ class Paciente(models.Model):
     genero = models.CharField(max_length=10, choices=GENERO_CHOICES)
     sistema_salud = models.CharField(max_length=100)
     telefono = models.IntegerField()
-    email = models.EmailField(max_length=100)
+    email = models.EmailField(max_length=100, unique=True)
     direccion = models.CharField(max_length=100)
     medicacion = models.CharField(max_length=100, null=True)
     medico = models.ForeignKey('Medico', on_delete=models.CASCADE, null=True, related_name='pacientes_asignados')
@@ -40,11 +40,11 @@ class Medico(models.Model):
     ]
     genero = models.CharField(max_length=10, choices=GENERO_CHOICES)
     telefono = models.CharField(max_length=20)
-    email = models.EmailField(unique=True)
+    email = models.EmailField(max_length=100, unique=True)
     direccion = models.CharField(max_length=100)
     matricula = models.CharField(max_length=20)
     especialidad = models.CharField(max_length=50)
-    pacientes = models.ManyToManyField(Paciente, through='Cita', related_name='citas_medico')
+    pacientes = models.ManyToManyField(Paciente, through='Cita', null=True, related_name='citas_medico')
 
     def __str__(self):
         return self.nombre

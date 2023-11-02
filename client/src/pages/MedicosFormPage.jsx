@@ -1,19 +1,19 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { createPaciente, deletePaciente, updatePaciente, getPacienteById } from '../api/pacientes.api';
+import { createMedico, deleteMedico, updateMedico, getMedicoById } from '../api/medicos.api';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
-export function PacientesFormPage() {
+export function MedicosFormPage() {
     const { register, handleSubmit, formState: {errors}, setValue} = useForm();
 
     const navigate = useNavigate();
     const params = useParams();
 
     const onSubmit = handleSubmit(async data => {
-        if (params.id_paciente) {
-            await updatePaciente(params.id_paciente, data);
-            toast.success('Paciente actualizado', {
+        if (params.id_medico) {
+            await updateMedico(params.id_medico, data);
+            toast.success('Médico actualizado', {
                 duration: 4000,
                 position: 'top-right',
                 style: {
@@ -22,8 +22,8 @@ export function PacientesFormPage() {
                 }
             })
         } else {
-            await createPaciente(data);
-            toast.success('Paciente creado', {
+            await createMedico(data);
+            toast.success('Médico creado', {
                 duration: 4000,
                 position: 'top-right',
                 style: {
@@ -33,18 +33,18 @@ export function PacientesFormPage() {
             
             }) 
         }
-        navigate('/pacientes');
+        navigate('/medicos');
     })
 
     useEffect(() => {
-        async function loadPaciente() {
-            if (params.id_paciente) {
-                const res = await getPacienteById(params.id_paciente);
+        async function loadMedico() {
+            if (params.id_medico) {
+                const res = await getMedicoById(params.id_medico);
                 console.log(res);
     
                 const fields = [
                     'nombre', 'apellido', 'edad', 'rut', 'fecha_nacimiento', 
-                    'genero', 'direccion', 'telefono', 'email', 'sistema_salud'
+                    'genero', 'direccion', 'telefono', 'email', 'matricula', 'especialidad'
                 ];
     
                 fields.forEach(field => {
@@ -52,7 +52,7 @@ export function PacientesFormPage() {
                 });
             }
         }
-        loadPaciente();
+        loadMedico();
     }, []);
 
     return (
@@ -115,23 +115,29 @@ export function PacientesFormPage() {
                     />
                     {errors.email && <span>"Este campo es requerido"</span>}
                 </label>
-                <label>Sistema de Salud:
-                    <input type="text" placeholder="Sistema de Salud" {...register('sistema_salud', {required: true})} 
+                <label>Matrícula:
+                    <input type="text" placeholder="Matrícula" {...register('matricula', {required: true})} 
                     className='bg-zinc-700 p-3 rounded-lg block w-full mb-3'
                     />
-                    {errors.sistema_salud && <span>"Este campo es requerido"</span>}
+                    {errors.matricula && <span>"Este campo es requerido"</span>}
+                </label>
+                <label>Especialidad:
+                    <input type="text" placeholder="Especialidad" {...register('especialidad', {required: true})} 
+                    className='bg-zinc-700 p-3 rounded-lg block w-full mb-3'
+                    />
+                    {errors.especialidad && <span>"Este campo es requerido"</span>}
                 </label>
                
                 <button
                 className='bg-indigo-500 p-3 rounded-lg block w-full mt-9'>Guardar</button>
             </form>
-            {params.id_paciente && (
+            {params.id_medico && (
             <button className='bg-red-500 p-3 rounded-lg w-48 mt-3 mb-6'
                 onClick={async () => {
                 const accepted = window.confirm('¿Está seguro de eliminar?')
                 if (accepted) {
-                    await deletePaciente(params.id_paciente)
-                    toast.success('Paciente eliminado', {
+                    await deleteMedico(params.id_medico)
+                    toast.success('Medico eliminado', {
                         duration: 4000,
                         position: 'top-right',
                         style: {
@@ -140,7 +146,7 @@ export function PacientesFormPage() {
                         }
                     
                     }) 
-                    navigate('/pacientes')
+                    navigate('/medicos')
                 }
             }}>Eliminar</button>)}
         </div>
