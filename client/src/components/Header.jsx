@@ -1,6 +1,6 @@
 export function Header() {
     return (
-        <header className="bg-indigo-600 p-6 text-white shadow-md rounded">
+        <header className="w-full bg-indigo-600 p-3 text-white shadow-md rounded">
             <div className="container mx-auto flex items-center justify-between">
                 {/* Logo y nombre de la aplicación */}
                 <div className="flex items-center">
