@@ -11,3 +11,7 @@ body {
   background-attachment: fixed;
   color: rgb(255, 255, 255);
 }
+
+footer {
+  bottom: 0;
+}
