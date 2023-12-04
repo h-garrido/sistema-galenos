@@ -8,6 +8,7 @@ import { CitasFormPage } from "./pages/CitasFormPage";
 import { Navigation } from './components/Navigation';
 import { Dashboard } from './pages/Dashboard';
 import { Toaster } from 'react-hot-toast';
+import LoginFormPage from "./pages/LoginFormPage";
 
 function App() {
   return (
@@ -16,16 +17,17 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" />} />
+          <Route path="/login" element={<LoginFormPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/pacientes" element={<PacientesPage />} />
-          <Route path="/pacientes/:id_paciente" element={<PacientesFormPage />} />
           <Route path="/pacientes/crear" element={<PacientesFormPage />} />
-          <Route path="/medicos" element={<MedicosPage />} />
-          <Route path="/medicos/:id_medico" element={<MedicosFormPage />} />
+          <Route path="/pacientes/:id_paciente" element={<PacientesFormPage />} />
+          <Route path="/pacientes" element={<PacientesPage />} />
           <Route path="/medicos/crear" element={<MedicosFormPage />} />
-          <Route path="/citas" element={<CitasPage />} />
-          <Route path="/citas/:id_cita" element={<CitasFormPage />} />
+          <Route path="/medicos/:id_medico" element={<MedicosFormPage />} />
+          <Route path="/medicos" element={<MedicosPage />} />
           <Route path="/citas/crear" element={<CitasFormPage />} />
+          <Route path="/citas/:id_cita" element={<CitasFormPage />} />
+          <Route path="/citas" element={<CitasPage />} />
         </Routes>
         <Toaster />
       </div>

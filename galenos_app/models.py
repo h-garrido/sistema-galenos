@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class Paciente(models.Model):
@@ -62,3 +63,10 @@ class Cita(models.Model):
 
     def __str__(self):
         return f"{self.paciente} cita con {self.medico} el {self.fecha} a las {self.hora}"
+    
+
+class CustomUser(AbstractUser):
+    rut = models.CharField(max_length=12, unique=True, verbose_name='RUT')
+    es_paciente = models.BooleanField(default=False)
+    es_medico = models.BooleanField(default=False)
+    es_secretaria = models.BooleanField(default=False)

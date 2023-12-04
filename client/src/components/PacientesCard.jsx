@@ -11,7 +11,7 @@ export function PacienteCard({ paciente }) {
                 navigate(`/pacientes/${paciente.id_paciente}`)
             }}
         >
-            
+
             <p className='text-slate-400'>Nombres: {paciente.nombre}</p>
             <p className='text-slate-400'>Apellidos: {paciente.apellido}</p>
             <p className='text-slate-400'>RUT: {paciente.rut}</p>
