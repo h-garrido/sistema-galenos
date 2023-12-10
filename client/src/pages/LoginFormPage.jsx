@@ -10,13 +10,13 @@ function LoginFormPage({ onLoginSuccess }) {
     const handleLogin = async (event) => {
         event.preventDefault();
         try {
-            // Ajusta la URL según tu endpoint específico de inicio de sesión
+            // Ajusta la URL según el endpoint específico de inicio de sesión
             const response = await axios.post('/api/login/', {
                 rut: rut,
                 password: password,
             });
 
-            // Aquí manejas la respuesta y la autenticación exitosa
+            // Aquí se maneja la respuesta y la autenticación exitosa
             // Por ejemplo, guardando el token en el almacenamiento local y redirigiendo al usuario
             localStorage.setItem('authToken', response.data.token);
             onLoginSuccess(response.data); // Ejecuta la función callback para manejar el inicio de sesión exitoso
@@ -32,12 +32,12 @@ function LoginFormPage({ onLoginSuccess }) {
     };
 
     return (
-        <div>
-            <h2>Iniciar Sesión</h2>
+        <div className='max-w-xl mx-auto px-4 sm:px-6 lg:px-8'>
             <form onSubmit={handleLogin}>
                 <div>
                     <label htmlFor="rut">RUT</label>
-                    <input
+                    <input 
+                        className='bg-zinc-700 p-3 rounded-lg block w-full mb-3'
                         id="rut"
                         type="text"
                         value={rut}
@@ -48,6 +48,7 @@ function LoginFormPage({ onLoginSuccess }) {
                 <div>
                     <label htmlFor="password">Contraseña</label>
                     <input
+                        className='bg-zinc-700 p-3 rounded-lg block w-full mb-3'
                         id="password"
                         type="password"
                         value={password}
@@ -56,7 +57,7 @@ function LoginFormPage({ onLoginSuccess }) {
                     />
                 </div>
                 {error && <p>{error}</p>}
-                <button type="submit">Iniciar Sesión</button>
+                <button className='bg-indigo-500 p-3 rounded-lg block w-full mt-9 mb-6' type="submit">Iniciar Sesión</button>
             </form>
         </div>
     );

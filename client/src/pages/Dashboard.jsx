@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { Header } from '../components/Header';  // Asegúrate de importar los componentes
-import { Footer } from '../components/Footer';
 
 export function Dashboard() {
     return (
@@ -35,8 +34,6 @@ export function Dashboard() {
                     </div>
                 </div>
             </main>
-
-            <Footer />
         </div>
     );
 }

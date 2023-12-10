@@ -51,6 +51,13 @@ export function Navigation() {
                     </button>
                 </div>
             )}
+
+            {currentPath.startsWith('/login') && (
+                <div className='flex justify-between items-center mb-4'>
+                    {/* Navegación para Citas Médicas */}
+                    <h1 className='font-bold text-3xl mb-4'>Iniciar Sesión</h1>
+                </div>
+            )}
         </div>
     )
 }

@@ -16,11 +16,16 @@ class Paciente(models.Model):
         (FEMENINO, 'Femenino'),
     ]
     genero = models.CharField(max_length=10, choices=GENERO_CHOICES)
-    sistema_salud = models.CharField(max_length=100)
+    FONASA = 'Fonasa'
+    ISAPRE = 'Isapre'
+    SISTEMA_SALUD_CHOICES = [
+        (FONASA, 'Fonasa'),
+        (ISAPRE, 'Isapre'),
+    ]
+    sistema_salud = models.CharField(max_length=100, choices=SISTEMA_SALUD_CHOICES)
     telefono = models.IntegerField()
     email = models.EmailField(max_length=100, unique=True)
     direccion = models.CharField(max_length=100)
-    medicacion = models.CharField(max_length=100, null=True)
     medico = models.ForeignKey('Medico', on_delete=models.CASCADE, blank=True, null=True, related_name='pacientes_asignados')
 
     def __str__(self):
@@ -59,7 +64,6 @@ class Cita(models.Model):
     hora = models.TimeField()
     motivo = models.TextField()
     diagnostico = models.TextField()
-    receta = models.TextField()
 
     def __str__(self):
         return f"{self.paciente} cita con {self.medico} el {self.fecha} a las {self.hora}"

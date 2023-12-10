@@ -18,7 +18,6 @@ export function CitaCard({ cita }) {
                 <p className='text-slate-400'>Hora: {cita.hora}</p>
                 <p className='text-slate-400'>Motivo: {cita.motivo}</p>
                 <p className='text-slate-400'>Diagnóstico: {cita.diagnostico}</p>
-                <p className='text-slate-400'>Receta: {cita.receta}</p>
                 <hr />
             </div>
         )

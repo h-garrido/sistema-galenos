@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { createPaciente, deletePaciente, updatePaciente, getPacienteById } from '../api/pacientes.api';
@@ -53,7 +54,10 @@ export function PacientesFormPage() {
             }
         }
         loadPaciente();
-    }, []);
+    }, [
+        params.id_paciente, 
+        setValue
+    ]);
 
     return (
         <div className='max-w-xl mx-auto'>
@@ -115,10 +119,13 @@ export function PacientesFormPage() {
                     />
                     {errors.email && <span>"Este campo es requerido"</span>}
                 </label>
+                
                 <label>Sistema de Salud:
-                    <input type="text" placeholder="Sistema de Salud" {...register('sistema_salud', {required: true})} 
-                    className='bg-zinc-700 p-3 rounded-lg block w-full mb-3'
-                    />
+                    <select {...register('sistema_salud', { required: true })} className='bg-zinc-700 p-3 rounded-lg block w-full mb-3'>
+                        <option value="">Seleccione un previsión</option>
+                        <option value="Fonasa">Fonasa</option>
+                        <option value="Isapre">Isapre</option>
+                    </select>
                     {errors.sistema_salud && <span>"Este campo es requerido"</span>}
                 </label>
                

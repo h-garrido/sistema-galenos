@@ -16,7 +16,7 @@ function App() {
       <div className="container mx-auto">
         <Navigation />
         <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" />} />
+          <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<LoginFormPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/pacientes/crear" element={<PacientesFormPage />} />

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { createMedico, deleteMedico, updateMedico, getMedicoById } from '../api/medicos.api';
@@ -53,10 +54,13 @@ export function MedicosFormPage() {
             }
         }
         loadMedico();
-    }, []);
+    }, [
+        params.id_medico, 
+        setValue
+    ]);
 
     return (
-        <div className='max-w-xl mx-auto'>
+        <div className='max-w-xl mx-auto px-4 sm:px-6 lg:px-8'>
             <form onSubmit={onSubmit}>
                 <label>Nombres:
                     <input type="text" placeholder="Nombres" {...register('nombre', {required: true})}

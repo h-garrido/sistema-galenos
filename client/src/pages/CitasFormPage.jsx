@@ -48,7 +48,7 @@ export function CitasFormPage() {
 
                 const fields = [
                     'paciente', 'medico', 'fecha', 'hora', 'motivo',
-                    'diagnostico', 'receta'
+                    'diagnostico'
                 ];
 
                 fields.forEach(field => {
@@ -57,7 +57,10 @@ export function CitasFormPage() {
             }
         }
         loadCita();
-    }, []);
+    }, [
+        params.id_cita,
+        setValue
+    ]);
 
     useEffect(() => {
         async function loadMedicosPacientes() {
@@ -164,19 +167,7 @@ export function CitasFormPage() {
                     />
                     {errors.diagnostico && <span className='text-red-500'>Este campo es requerido</span>}
                 </div>
-                <div className='mb-4'>
-                    <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='receta'>
-                        Receta
-                    </label>
-                    <input
-                        {...register('receta', { required: true })}
-                        className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-                        id='receta'
-                        type='text'
-                        placeholder='Receta'
-                    />
-                    {errors.receta && <span className='text-red-500'>Este campo es requerido</span>}
-                </div>
+                
                 <button
                     className='bg-indigo-500 p-3 rounded-lg block w-full mt-9 mb-6'
                 >
