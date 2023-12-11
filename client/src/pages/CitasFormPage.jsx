@@ -14,31 +14,23 @@ export function CitasFormPage() {
     const [medicos, setMedicos] = useState([]);
     const [pacientes, setPacientes] = useState([]);
 
-    const onSubmit = handleSubmit(async data => {
-        if (params.id_cita) {
-            await updateCita(params.id_cita, data);
-            toast.success('Cita actualizada', {
+    const onSubmit = handleSubmit(cita => {
+        const action = params.id_cita ? updateCita(params.id_cita, cita) : createCita(cita);
+        action.then(() => {
+            toast.success(`Cita ${params.id_cita ? 'actualizada' : 'creada'}`, {
                 duration: 4000,
                 position: 'top-right',
                 style: {
                     background: '#333',
                     color: '#fff',
                 }
-            })
-        } else {
-            await createCita(data);
-            toast.success('Cita creada', {
-                duration: 4000,
-                position: 'top-right',
-                style: {
-                    background: '#333',
-                    color: '#fff',
-                }
-
-            })
-        }
-        navigate('/citas');
-    })
+            });
+            navigate('/citas');
+        }).catch(error => {
+            console.error('Error al guardar la cita', error);
+            toast.error('Error al guardar la cita');
+        });
+    });
 
     useEffect(() => {
         async function loadCita() {
@@ -85,6 +77,7 @@ export function CitasFormPage() {
                     </label>
                     <select
                         {...register('paciente', { required: true })}
+                        defaultValue={''}
                         className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                         id='paciente'
                     >
@@ -103,6 +96,7 @@ export function CitasFormPage() {
                     </label>
                     <select
                         {...register('medico', { required: true })}
+                        defaultValue={''}
                         className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                         id='medico'
                     >
@@ -177,8 +171,10 @@ export function CitasFormPage() {
             {params.id_cita && (
                 <button
                     onClick={async () => {
-                        await deleteCita(params.id_cita);
-                        navigate('/citas');
+                        if (window.confirm('¿Está seguro de que desea eliminar esta cita?')) {
+                            await deleteCita(params.id_cita);
+                            navigate('/citas');
+                        }
                     }}
                     className='bg-red-500 p-3 rounded-lg block w-full mt-3 mb-6'
                 >
