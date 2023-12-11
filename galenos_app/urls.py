@@ -13,6 +13,4 @@ router.register(r'Citas', views.CitaView, 'Citas')
 urlpatterns = [
     path('api/v1/', include(router.urls)),
     path('docs/', include_docs_urls(title="Galenos API")),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
